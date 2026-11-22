@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>10°C Rule｜Arrhenius & Collision Theory 互動模擬</title>
+<style>
+:root{--navy:#172b46;--ink:#1d2c40;--muted:#68768a;--border:#dae5f1;--bg:#f1f5fb;--blue:#3174d7;--green:#0f9276;--red:#cc555a;--pale:#b8c7d7;--soft:#eaf1f9;--shadow:0 8px 26px rgba(27,49,84,.06)}
+*{box-sizing:border-box}html{font-size:15px}body{margin:0;color:var(--ink);background:radial-gradient(circle at 0 0,#e6f0ff 0,transparent 34rem),radial-gradient(circle at 100% 100%,#e4f7f0 0,transparent 30rem),var(--bg);font-family:Inter,"Noto Sans TC","Microsoft JhengHei",system-ui,-apple-system,sans-serif}
+button,input{font:inherit}button{cursor:pointer}button:focus-visible,input:focus-visible{outline:3px solid #a0c4ff;outline-offset:2px}.site{max-width:1360px;margin:auto;padding:24px 28px 36px}.mast{display:flex;gap:24px;align-items:flex-end;justify-content:space-between;margin-bottom:20px}.kicker{font-size:.72rem;letter-spacing:.17em;color:var(--blue);font-weight:850;text-transform:uppercase}.mast h1{margin:5px 0 7px;font-size:clamp(1.62rem,2.5vw,2.35rem);line-height:1.16;letter-spacing:-.04em;color:var(--navy)}.mast p{margin:0;color:var(--muted);line-height:1.55;max-width:790px;font-size:.91rem}.mast-flag{flex:none;background:#fff;border:1px solid var(--border);padding:10px 14px;border-radius:12px;color:#516b86;font-size:.8rem;white-space:nowrap}.shell{display:grid;grid-template-columns:284px minmax(0,1fr);gap:18px;align-items:start}.panel{background:#fff;border:1px solid var(--border);border-radius:18px;box-shadow:var(--shadow)}.sidebar{padding:20px;position:sticky;top:15px}.sidebar h2{font-size:1.03rem;margin:0 0 4px;color:var(--navy)}.sidebar .sub{color:var(--muted);font-size:.79rem;line-height:1.5;margin:0 0 18px}.control{border-top:1px solid #edf2f8;padding:15px 0 11px}.controlhead{display:flex;justify-content:space-between;align-items:center;gap:10px;font-weight:730;font-size:.88rem}.read{white-space:nowrap;color:var(--blue);font-variant-numeric:tabular-nums;font-size:.85rem}.inputs{display:flex;gap:10px;align-items:center;margin:11px 0 6px}.inputs input[type=range]{flex:1;min-width:0;accent-color:var(--blue)}.inputs input[type=number]{width:77px;min-width:0;border:1px solid #ccd9e8;border-radius:8px;padding:7px 8px;text-align:right;background:#fff;color:var(--ink)}.hint{margin:5px 0 0;color:var(--muted);font-size:.76rem;line-height:1.5}.sidebar-buttons{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:15px}.btn{border:1px solid #d0ddeb;border-radius:9px;background:#f2f7fd;color:#2b547c;font-weight:750;padding:10px 10px;line-height:1.25;font-size:.79rem}.btn:hover{background:#e5f0fb}.btn.primary{background:var(--blue);color:#fff;border-color:var(--blue)}.btn.primary:hover{background:#215fae}.sidebar .micro{font-size:.76rem;color:var(--muted);line-height:1.55;margin:16px 0 0}.work{min-width:0;overflow:hidden}.tabbar{display:flex;gap:5px;align-items:center;padding:10px;background:#f8fbff;border-bottom:1px solid var(--border);overflow-x:auto;scrollbar-width:thin}.tab{border:0;background:transparent;color:#64778f;padding:12px 13px;border-radius:10px;font-size:.88rem;white-space:nowrap;font-weight:730}.tab[aria-selected="true"]{color:#1d5fb9;background:white;box-shadow:0 2px 9px rgba(47,101,174,.09);border:1px solid #d5e4f9;padding:11px 12px}.tabpanel{display:none;padding:23px 25px 26px;min-height:480px}.tabpanel.active{display:block;animation:enter .18s ease-out}@keyframes enter{from{opacity:.55;transform:translateY(3px)}to{opacity:1;transform:none}}
+.page-top{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;margin-bottom:18px}.overline{color:var(--blue);font-weight:790;font-size:.75rem;letter-spacing:.06em;margin-bottom:5px}.page-top h2{font-size:1.36rem;letter-spacing:-.02em;line-height:1.3;margin:0;color:var(--navy)}.page-top .minor{margin:8px 0 0;color:var(--muted);font-size:.83rem;line-height:1.55}.small-tag{background:#f2f6fc;color:#647b97;border:1px solid #e2ebf5;border-radius:10px;padding:8px 10px;font-size:.77rem;white-space:nowrap}.metrics{display:grid;grid-template-columns:1fr 1fr;gap:13px}.metric{padding:19px 20px;border-radius:14px;border:1px solid #d7e7fa;background:#f1f7ff}.metric.coll{border-color:#d0ebe2;background:#effaf6}.metric .name{font-weight:770;font-size:.83rem;color:#315e95}.metric.coll .name{color:#137b64}.metric .num{font-size:clamp(1.8rem,3.1vw,2.5rem);font-weight:850;line-height:1.2;margin:10px 0 5px;color:#1b4e91;font-variant-numeric:tabular-nums}.metric.coll .num{color:#0e755f}.metric .desc{font-size:.8rem;color:var(--muted);line-height:1.5}.conclusion{margin:13px 0 20px;padding:12px 15px;border:1px solid #e0e8f2;border-radius:11px;background:#fafcff;line-height:1.7;font-size:.88rem}.conclusion strong{color:#25486f}.section-head{display:flex;gap:8px;align-items:center;margin:0 0 13px;font-size:1.04rem;color:var(--navy)}.section-head .number{font-size:.74rem;background:#e7f0fd;color:var(--blue);padding:4px 7px;border-radius:7px}.target-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.target{border:1px solid #e3eaf3;background:#fff;border-radius:12px;padding:15px 17px}.target-label{font-size:.81rem;font-weight:770;color:#536982}.target-value{color:var(--navy);font-weight:830;font-variant-numeric:tabular-nums;font-size:1.62rem;margin:6px 0}.target-value span{font-weight:650;font-size:.83rem;color:#66778d}.target-value span:first-child{font-size:1.62rem;font-weight:830;color:var(--navy)}.target-note{color:var(--muted);font-size:.75rem;line-height:1.5}.explain-line{color:#66778d;font-size:.78rem;line-height:1.7;margin:10px 0 0}.action-row{display:flex;gap:8px;margin-top:16px;flex-wrap:wrap}.action-link{background:transparent;border:1px solid #cbdcee;color:#2f6cb7;padding:8px 12px;border-radius:9px;font-weight:730;font-size:.8rem}.action-link:hover{background:#f1f7ff}
+.charts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.chart-card{border:1px solid var(--border);border-radius:14px;padding:14px 12px 12px;background:#fff;min-width:0}.chart-card h3{font-size:.91rem;margin:1px 6px 6px;color:var(--navy)}.chart-desc{color:var(--muted);font-size:.75rem;line-height:1.55;margin:0 6px 7px}.chart-canvas{width:100%;height:312px;display:block}.legend{display:flex;gap:9px 15px;flex-wrap:wrap;font-size:.74rem;color:#52667d;margin:8px 8px 0}.key{display:inline-block;width:16px;height:3px;border-radius:3px;vertical-align:middle;margin-right:5px}.key.blue{background:var(--blue)}.key.green{background:var(--green)}.key.red{background:var(--red)}.key.gray{background:#aebed1}.legend .dash{border-top:2px dashed #b9c6d7;height:0;background:transparent}.chart-foot{margin:13px 0 0;padding:12px 15px;background:#f7faff;border:1px solid #e3eaf4;border-radius:10px;font-size:.82rem;line-height:1.7;color:#51657e}
+.formula-grid{display:grid;grid-template-columns:1fr 1fr;gap:15px}.formula-card{background:#fcfdff;border:1px solid var(--border);border-radius:14px;padding:17px 18px;min-width:0}.formula-card h3{margin:0 0 12px;font-size:1.05rem;color:var(--navy)}.formula-card p,.formula-card li{color:#54677e;font-size:.84rem;line-height:1.75}.formula-card p{margin:8px 0}.math{font-family:Cambria,"Times New Roman",serif;font-size:1.12rem;color:#233c5b;white-space:normal;overflow-wrap:anywhere;line-height:1.6}.math.important{background:#eaf3ff;border:1px solid #d3e5fa;border-radius:10px;padding:11px 12px;font-size:1.13rem;margin:11px 0}.formula-card.collision .math.important{background:#eaf8f2;border-color:#cde8dd}.math.small{font-size:1.03rem}.step-title{font-weight:820;font-size:.83rem;color:#426288;margin:12px 0 6px}.stepnote{font-size:.81rem;line-height:1.65;color:#5d6d83}.stepnote b{color:#274964}.arrow-step{color:#8094ae;margin:4px 0;font-size:.95rem}.formula-note{margin:12px 0 0;background:#f7faff;padding:10px 13px;border-radius:9px;font-size:.79rem;color:#5a6d83;line-height:1.7}.formula-foot{font-size:.78rem;line-height:1.65;color:#697b92;margin:13px 0 0}
+.conditions-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}.discussion{border:1px solid var(--border);border-radius:14px;padding:16px 18px;background:#fff;min-width:0}.discussion h3{font-size:.99rem;margin:0 0 9px;color:var(--navy)}.discussion p{font-size:.82rem;line-height:1.65;color:#53677f;margin:7px 0 10px}.mini-equation{font-family:Cambria,"Times New Roman",serif;font-size:.98rem;background:#f4f8fd;border-radius:9px;padding:9px 10px;color:#305078;margin:8px 0}.equation-pair{display:grid;gap:7px;margin:10px 0 5px}.equation-pair .mini-equation{margin:0;font-size:.92rem;line-height:1.55;overflow-wrap:anywhere}.eq-label{display:block;font-family:Inter,"Noto Sans TC","Microsoft JhengHei",system-ui,sans-serif;font-size:.76rem;font-weight:800;color:#4269a3;margin:0 0 4px}.eq-label.coll-label{color:#16866d}.eq-row.coll-row .mini-equation{background:#f0f9f5;color:#246951}.equation-note{font-size:.75rem!important;color:#73849a!important;line-height:1.55!important;margin:5px 0 10px!important}.data-table{width:100%;border-collapse:collapse;font-size:.81rem;font-variant-numeric:tabular-nums}.data-table th{font-weight:700;font-size:.75rem;color:#667d98;background:#f5f8fc;text-align:right}.data-table th:first-child,.data-table td:first-child{text-align:left}.data-table th,.data-table td{padding:9px 8px;border-bottom:1px solid #e9eef5}.data-table td{text-align:right;color:#324d67}.data-table tr:last-child td{border-bottom:0}.insight{font-size:.81rem;line-height:1.65;color:#345a75;background:#f0f7fd;border-radius:9px;padding:10px 12px;margin:12px 0 0}.final-note{margin:14px 0 0;border:1px solid #e1e9f2;border-radius:12px;background:#f9fbff;padding:12px 15px;font-size:.83rem;color:#536982;line-height:1.7}
+@media(max-width:1130px){.site{padding:20px 16px}.shell{grid-template-columns:245px 1fr}.sidebar{padding:15px}.chart-canvas{height:275px}.tab{padding:11px 9px}.formula-grid{grid-template-columns:1fr}}
+@media(max-width:900px){.mast-flag{display:none}.shell{grid-template-columns:1fr}.sidebar{position:static}.sidebar .controls{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:13px}.control{border:1px solid #edf2f8;padding:11px;border-radius:11px}.sidebar-buttons{grid-template-columns:repeat(4,minmax(0,1fr))}.sidebar .micro{margin-top:10px}.tabbar{position:sticky;top:0;z-index:3}.charts{grid-template-columns:1fr}.chart-canvas{height:320px}}
+@media(max-width:620px){.site{padding:13px 10px 24px}.mast{margin:7px 5px 13px}.mast h1{font-size:1.5rem}.mast p{font-size:.81rem}.sidebar{padding:14px}.sidebar .controls{grid-template-columns:1fr}.sidebar-buttons{grid-template-columns:1fr 1fr}.control{padding:8px 10px}.inputs{margin-top:7px}.work{border-radius:15px}.tabbar{padding:6px;gap:2px}.tab{font-size:.79rem;padding:10px 8px}.tab[aria-selected="true"]{padding:9px 7px}.tabpanel{padding:17px 14px;min-height:440px}.page-top{flex-wrap:wrap}.page-top h2{font-size:1.19rem}.small-tag{display:none}.metrics,.target-grid,.conditions-grid{grid-template-columns:1fr}.chart-canvas{height:282px}.formula-card{padding:14px}.math{font-size:1.04rem}.math.important{font-size:1.05rem}}
+@media(prefers-reduced-motion:reduce){.tabpanel.active{animation:none}}
+</style>
+</head>
+<body>
+<div class="site">
+  <header class="mast">
+    <div><div class="kicker">CHEMICAL KINETICS · INTERACTIVE HOMEWORK</div><h1>10°C Rule｜溫度真的讓反應快兩倍嗎？</h1><p>比較 Arrhenius Equation 與 Collision Theory，找出在什麼溫度、活化能下，速率常數會因升溫 10°C 而接近兩倍。</p></div>
+    <div class="mast-flag">2 種模型 · 3 個參數 · 4 個頁籤</div>
+  </header>
+  <div class="shell">
+    <aside class="panel sidebar" aria-label="參數控制">
+      <h2>參數設定</h2><p class="sub">拖動滑桿或輸入數值，右側結果與圖表會立即更新。</p>
+      <div class="controls">
+        <div class="control"><div class="controlhead"><label for="t1Number">初始溫度 T₁</label><span class="read" id="t1Read">25°C</span></div><div class="inputs"><input id="t1Slider" type="range" min="0" max="100" step="1" value="25"><input id="t1Number" type="number" min="0" max="100" step="1" value="25" aria-label="初始溫度，攝氏度"></div><p class="hint">從哪個溫度開始升溫？</p></div>
+        <div class="control"><div class="controlhead"><label for="dtNumber">溫度變化 ΔT</label><span class="read" id="dtRead">+10°C</span></div><div class="inputs"><input id="dtSlider" type="range" min="0" max="20" step="1" value="10"><input id="dtNumber" type="number" min="0" max="20" step="1" value="10" aria-label="升溫幅度，攝氏度"></div><p class="hint">要檢驗 10°C Rule，請設 +10°C。</p></div>
+        <div class="control"><div class="controlhead"><label for="eaNumber">活化能 Eₐ</label><span class="read" id="eaRead">60 kJ/mol</span></div><div class="inputs"><input id="eaSlider" type="range" min="0" max="120" step="0.01" value="60"><input id="eaNumber" type="number" min="0" max="120" step="0.01" value="60" aria-label="活化能，千焦每莫耳"></div><p class="hint">影響速率常數對溫度的敏感程度。</p></div>
+      </div>
+      <div class="sidebar-buttons">
+        <button type="button" class="btn" id="resetBtn">恢復預設</button>
+        <button type="button" class="btn" id="tenBtn">設為 +10°C</button>
+        <button type="button" class="btn" id="arrExactBtn">Arrhenius 2×</button>
+        <button type="button" class="btn" id="collExactBtn">Collision 2×</button>
+      </div>
+      <p class="micro">註：溫度計算使用 K；圖上比較的是速率常數的比值 k₂/k₁（無單位），不是絕對反應速率。</p>
+    </aside>
+    <main class="panel work">
+      <nav class="tabbar" aria-label="內容分頁" role="tablist">
+        <button class="tab" type="button" role="tab" id="tab-charts" aria-controls="panel-charts" aria-selected="true" data-page="charts">01　圖表比較</button>
+        <button class="tab" type="button" role="tab" id="tab-results" aria-controls="panel-results" aria-selected="false" tabindex="-1" data-page="results">02　模擬結果</button>
+        <button class="tab" type="button" role="tab" id="tab-theory" aria-controls="panel-theory" aria-selected="false" tabindex="-1" data-page="theory">03　公式原理</button>
+        <button class="tab" type="button" role="tab" id="tab-discussion" aria-controls="panel-discussion" aria-selected="false" tabindex="-1" data-page="discussion">04　條件討論</button>
+      </nav>
+      <section id="panel-charts" class="tabpanel active" role="tabpanel" aria-labelledby="tab-charts">
+        <div class="page-top"><div><div class="overline">VISUAL COMPARISON</div><h2>兩種模型的溫度效應</h2><p class="minor">縱軸統一為速率常數比值 k₂/k₁（無單位）。淡灰色虛線表示以 2 倍為基準的 ±5% 範圍。</p></div></div>
+        <div class="charts">
+          <article class="chart-card"><h3>圖一｜升溫幅度 ΔT 的影響</h3><p class="chart-desc">固定初始溫度及活化能，只改變升溫幅度。</p><canvas id="tempChart" class="chart-canvas" role="img" aria-label="升溫幅度與速率常數比值折線圖"></canvas></article>
+          <article class="chart-card"><h3>圖二｜活化能 Eₐ 的影響</h3><p class="chart-desc">固定初始溫度及升溫幅度，只改變活化能。</p><canvas id="eaChart" class="chart-canvas" role="img" aria-label="活化能與速率常數比值折線圖"></canvas></article>
+        </div>
+        <div class="legend"><span><i class="key blue"></i>Arrhenius</span><span><i class="key green"></i>Collision Theory</span><span><i class="key red"></i>2 倍基準</span><span><i class="key dash"></i>±5% 容許界線</span></div>
+        <div class="chart-foot" id="chartInsight">曲線與 2 倍線相交，代表該條件下速率常數恰好變成兩倍。</div>
+      </section>
+      <section id="panel-results" class="tabpanel" role="tabpanel" aria-labelledby="tab-results" hidden>
+        <div class="page-top"><div><div class="overline">OVERVIEW</div><h2>目前設定的速率常數比值</h2><p class="minor" id="tempsText">25°C → 35°C（升溫 10°C）</p></div><div class="small-tag" id="conditionTag">檢驗 10°C Rule</div></div>
+        <div class="metrics"><div class="metric"><div class="name">Arrhenius Equation · k₂/k₁</div><div class="num" id="arrOut">2.1934×</div><div class="desc" id="arrClass">目前是否接近兩倍？</div></div><div class="metric coll"><div class="name">Collision Theory · k₂/k₁</div><div class="num" id="collOut">2.2299×</div><div class="desc" id="collClass">另外考慮分子相對速度的 √T 效應</div></div></div>
+        <div class="conclusion" id="overviewSummary" aria-live="polite"></div>
+        <h3 class="section-head"><span class="number">Q10</span> 當升溫固定 +10°C，怎樣才會恰好翻倍？</h3>
+        <div class="target-grid"><div class="target"><div class="target-label">Arrhenius 所需活化能 Eₐ</div><div class="target-value"><span id="eaArrOut">52.95</span> <span>kJ/mol</span></div><div class="target-note" id="arrTargetNote">以 25°C → 35°C 計算</div></div><div class="target"><div class="target-label">Collision Theory 所需活化能 Eₐ</div><div class="target-value"><span id="eaCollOut">51.69</span> <span>kJ/mol</span></div><div class="target-note" id="collTargetNote">以 25°C → 35°C 計算</div></div></div>
+        <p class="explain-line">以上兩個 Eₐ 是依照目前「初始溫度」計算的答案，會自動更新。<strong>恰好 2 倍</strong>與<strong>接近 2 倍（±5%）</strong>是不同的判定；教學容許區間為 1.90–2.10 倍。</p>
+        <div class="action-row"><button class="action-link" type="button" data-go="charts">查看兩張圖 →</button><button class="action-link" type="button" data-go="discussion">比較高低溫及活化能 →</button></div>
+      </section>
+      <section id="panel-theory" class="tabpanel" role="tabpanel" aria-labelledby="tab-theory" hidden>
+        <div class="page-top"><div><div class="overline">WHY THESE EQUATIONS?</div><h2>公式原理：重點是 Collision 為什麼多了 √T</h2><p class="minor">兩個模型都包含活化能的指數項；碰撞理論另外把分子相對速度與溫度的關係納入。</p></div></div>
+        <div class="formula-grid">
+          <article class="formula-card"><h3>Arrhenius Equation</h3><div class="step-title">原始公式</div><div class="math">k(T) = A exp(−Eₐ / RT)</div><p>將 T₁、T₂ 的速率常數相除；假設 A 和 Eₐ 在溫度範圍內不變。</p><div class="math important">k₂ / k₁ = exp[(Eₐ / R)(1/T₁ − 1/T₂)]</div><p>A 在比值中抵消。溫度和活化能決定升溫後的速率常數增加多少。</p><div class="formula-note">R = 8.314 J mol⁻¹ K⁻¹；Eₐ 計算時須換算為 J/mol，T 使用 K。</div></article>
+          <article class="formula-card collision"><h3>Collision Theory</h3>
+            <div class="step-title">速率常數</div>
+            <div class="math small">k(T) = P N<sub>A</sub> σ ⟨v<sub>rel</sub>⟩ exp(−Eₐ / RT)</div>
+            <div class="step-title">平均相對速度與溫度</div>
+            <div class="math small">⟨v<sub>rel</sub>⟩ = √[8k<sub>B</sub>T / (πμ)] ∝ √T</div>
+            <p class="stepnote">根據 Maxwell–Boltzmann 速度分布，平均相對速度與絕對溫度的平方根成正比（μ 是約化質量）。</p>
+            <div class="arrow-step">因此，當 P、σ 與 μ 固定時，碰撞模型比 Arrhenius 多出一個 √(T₂/T₁) 的溫度因子：</div>
+            <div class="math important">k₂ / k₁ = √(T₂/T₁) × exp[(Eₐ/R)(1/T₁ − 1/T₂)]</div>
+          </article>
+        </div>
+        <p class="formula-foot">模型範圍：Collision Theory 使用稀薄氣相、硬球碰撞及近似有效碰撞因子 exp(−Eₐ/RT)。這是用來比較溫度效應的教學模型，不保證適用於所有液相或多步驟催化反應。</p>
+      </section>
+      <section id="panel-discussion" class="tabpanel" role="tabpanel" aria-labelledby="tab-discussion" hidden>
+        <div class="page-top"><div><div class="overline">WHEN DOES Q10 ≈ 2?</div><h2>同樣升溫 10°C，哪些條件影響結果？</h2><p class="minor">兩張表都固定 ΔT = +10°C；第一張固定目前的 Eₐ，第二張固定目前的初始溫度 T₁。</p></div></div>
+        <div class="conditions-grid">
+          <article class="discussion"><h3>① 起始溫度：低溫 vs. 高溫</h3><p>固定活化能 <strong id="fixedEaLabel">60 kJ/mol</strong>，比較不同起始溫度。</p><div class="equation-pair"><div class="eq-row"><span class="eq-label">Arrhenius</span><div class="mini-equation">Q₁₀ = exp[(Eₐ/R) × 10 / (T(T+10))]</div></div><div class="eq-row coll-row"><span class="eq-label coll-label">Collision Theory</span><div class="mini-equation">Q₁₀ = √[(T+10)/T] × exp[(Eₐ/R) × 10 / (T(T+10))]</div></div></div><p class="equation-note">T 表示起始絕對溫度（K），T+10 為升溫後的絕對溫度（K）。</p><p>初始溫度 T 越高，分母越大；因此相同升溫 10°C 的<strong>增加倍率通常越小</strong>。</p><table class="data-table"><thead><tr><th>溫度區間</th><th>Arrhenius</th><th>Collision</th></tr></thead><tbody><tr><td>0 → 10°C</td><td id="temp0Arr"></td><td id="temp0Coll"></td></tr><tr><td>25 → 35°C</td><td id="temp25Arr"></td><td id="temp25Coll"></td></tr><tr><td>70 → 80°C</td><td id="temp70Arr"></td><td id="temp70Coll"></td></tr></tbody></table><div class="insight">重點：低溫下<strong>增加的比例</strong>較大，不代表低溫下的<strong>絕對速率常數</strong>比較大。</div></article>
+          <article class="discussion"><h3>② 活化能：低 Eₐ vs. 高 Eₐ</h3><p>固定目前的溫度區間 <strong id="fixedTempLabel">25 → 35°C</strong>，比較不同活化能。</p><div class="equation-pair"><div class="eq-row"><span class="eq-label">Arrhenius</span><div class="mini-equation" id="eaArrEquation">Q₁₀ = exp[(Eₐ/R) × 10 / (298.15 × 308.15)]</div></div><div class="eq-row coll-row"><span class="eq-label coll-label">Collision Theory</span><div class="mini-equation" id="eaCollEquation">Q₁₀ = √(308.15/298.15) × exp[(Eₐ/R) × 10 / (298.15 × 308.15)]</div></div></div><p class="equation-note" id="equationTempNote">25°C = 298.15 K；35°C = 308.15 K。公式必須代入絕對溫度（K）。</p><p>在相同溫度區間下，Eₐ 越高，指數項變化越大；所以<strong>溫度敏感度越高</strong>。</p><table class="data-table"><thead><tr><th>活化能</th><th>Arrhenius</th><th>Collision</th></tr></thead><tbody><tr><td>20 kJ/mol</td><td id="ea20Arr"></td><td id="ea20Coll"></td></tr><tr><td>60 kJ/mol</td><td id="ea60Arr"></td><td id="ea60Coll"></td></tr><tr><td>100 kJ/mol</td><td id="ea100Arr"></td><td id="ea100Coll"></td></tr></tbody></table><div class="insight">重點：活化能越高，升溫造成的<strong>倍率</strong>越大；但在相同 A、溫度下，高 Eₐ 的絕對 k 反而較小。</div></article>
+        </div>
+        <div class="final-note" id="discussionResult"></div>
+      </section>
+    </main>
+  </div>
+</div>
+<script>
+'use strict';
+const R=8.31446261815324;
+const initial={t1:25,dt:10,ea:60};
+const state={...initial};
+const $=id=>document.getElementById(id);
+const fmt=(x,n=2)=>Number(x).toFixed(n);
+const exactEa=(T,which)=>{
+ const T2=T+10, reciprocal=1/T-1/T2;
+ const log2=Math.log(2)-(which==='coll'?0.5*Math.log(T2/T):0);
+ return R*log2/reciprocal/1000;
+};
+function ratios(t1K,dtC,eaKJ){
+ const T2=t1K+dtC;
+ const arr=Math.exp((eaKJ*1000/R)*(1/t1K-1/T2));
+ return {arr,coll:arr*Math.sqrt(T2/t1K)};
+}
+let currentPage='charts';
+function changePage(next){
+ if(!['results','charts','theory','discussion'].includes(next))return;
+ currentPage=next;
+ document.querySelectorAll('[role=tab]').forEach(el=>{const on=el.dataset.page===next;el.setAttribute('aria-selected',on?'true':'false');el.tabIndex=on?0:-1;});
+ document.querySelectorAll('.tabpanel').forEach(el=>{const on=el.id==='panel-'+next;el.classList.toggle('active',on);el.hidden=!on;});
+ if(next==='charts')requestAnimationFrame(drawCharts);
+}
+document.querySelectorAll('[role=tab]').forEach(button=>button.addEventListener('click',()=>changePage(button.dataset.page)));
+document.querySelectorAll('[data-go]').forEach(button=>button.addEventListener('click',()=>changePage(button.dataset.go)));
+const tabs=[...document.querySelectorAll('[role=tab]')];
+document.querySelector('.tabbar').addEventListener('keydown',e=>{
+ if(!['ArrowLeft','ArrowRight','Home','End'].includes(e.key))return;
+ e.preventDefault();const i=tabs.findIndex(x=>x.dataset.page===currentPage);
+ const next=e.key==='Home'?0:e.key==='End'?tabs.length-1:(i+(e.key==='ArrowRight'?1:-1)+tabs.length)%tabs.length;
+ changePage(tabs[next].dataset.page);tabs[next].focus();
+});
+function assignParameter(key,num){const limits={t1:[0,100],dt:[0,20],ea:[0,120]};const [min,max]=limits[key];state[key]=Math.min(max,Math.max(min,num));$(''+key+'Slider').value=state[key];$(''+key+'Number').value=state[key];render();}
+for(const key of ['t1','dt','ea']){
+ const slider=$(key+'Slider'),number=$(key+'Number');
+ slider.addEventListener('input',()=>assignParameter(key,Number(slider.value)));
+ number.addEventListener('input',()=>{if(number.value==='')return;const v=Number(number.value);if(Number.isFinite(v))assignParameter(key,v)});
+ number.addEventListener('change',()=>{const v=Number(number.value);assignParameter(key,Number.isFinite(v)?v:initial[key])});
+}
+$('resetBtn').addEventListener('click',()=>{Object.assign(state,initial);render();});
+$('tenBtn').addEventListener('click',()=>assignParameter('dt',10));
+$('arrExactBtn').addEventListener('click',()=>{state.dt=10;state.ea=exactEa(state.t1+273.15,'arr');render();changePage('results');});
+$('collExactBtn').addEventListener('click',()=>{state.dt=10;state.ea=exactEa(state.t1+273.15,'coll');render();changePage('results');});
+function statusString(value){return Math.abs(value-2)<.0005?'幾乎恰好 2 倍':value>=1.9&&value<=2.1?'符合 ±5% 接近兩倍':'不在 ±5% 範圍內';}
+function render(){
+ const {t1,dt,ea}=state;
+ for(const key of ['t1','dt','ea']){$(key+'Slider').value=state[key];$(key+'Number').value=Number(state[key].toFixed(4));}
+ $('t1Read').textContent=fmt(t1,0)+'°C';$('dtRead').textContent='+'+fmt(dt,0)+'°C';$('eaRead').textContent=fmt(ea,2).replace(/\.00$/,'')+' kJ/mol';
+ const T1=t1+273.15,r=ratios(T1,dt,ea),arrE=exactEa(T1,'arr'),collE=exactEa(T1,'coll');
+ $('tempsText').textContent=`${fmt(t1,0)}°C → ${fmt(t1+dt,0)}°C（升溫 ${fmt(dt,0)}°C）`;
+ $('conditionTag').textContent=dt===10?'正在檢驗 +10°C':'目前 ΔT 不是 +10°C';
+ $('arrOut').textContent=fmt(r.arr,4)+'×';$('collOut').textContent=fmt(r.coll,4)+'×';
+ $('arrClass').textContent=dt===10?statusString(r.arr):'目前比較的是 +'+dt+'°C 的溫度效應';
+ $('collClass').textContent=dt===10?statusString(r.coll):'目前比較的是 +'+dt+'°C 的溫度效應';
+ $('overviewSummary').innerHTML=dt!==10?`目前溫差為 <strong>+${dt}°C</strong>，不是 10°C；仍可比較模型，但「10°C Rule」的判定需要將 ΔT 設為 +10°C。`:`在 <strong>${t1}°C → ${t1+10}°C</strong>、Eₐ = <strong>${fmt(ea,2)} kJ/mol</strong> 時：Arrhenius 為 <strong>${fmt(r.arr,3)} 倍</strong>，Collision Theory 為 <strong>${fmt(r.coll,3)} 倍</strong>。${r.arr>r.coll?'':'碰撞理論的比值略大，因為多了 √(T₂/T₁)。'}`;
+ $('eaArrOut').textContent=fmt(arrE,2);$('eaCollOut').textContent=fmt(collE,2);
+ $('arrTargetNote').textContent=`以 ${t1}°C → ${t1+10}°C 計算，k₂/k₁ = 2`;
+ $('collTargetNote').textContent=`以 ${t1}°C → ${t1+10}°C 計算，k₂/k₁ = 2`;
+ $('fixedEaLabel').textContent=fmt(ea,2)+' kJ/mol';$('fixedTempLabel').textContent=`${t1} → ${t1+10}°C`;
+ // 25→35°C is 298.15→308.15 K. Keep the substituted formulas synchronized with the initial-temperature slider.
+ const firstK=fmt(T1,2), secondK=fmt(T1+10,2);
+ $('eaArrEquation').textContent=`Q₁₀ = exp[(Eₐ/R) × 10 / (${firstK} × ${secondK})]`;
+ $('eaCollEquation').textContent=`Q₁₀ = √(${secondK}/${firstK}) × exp[(Eₐ/R) × 10 / (${firstK} × ${secondK})]`;
+ $('equationTempNote').textContent=`${t1}°C = ${firstK} K；${t1+10}°C = ${secondK} K。公式必須代入絕對溫度（K）。`;
+ for(const c of [0,25,70]){const out=ratios(c+273.15,10,ea);$('temp'+c+'Arr').textContent=fmt(out.arr,3)+'×';$('temp'+c+'Coll').textContent=fmt(out.coll,3)+'×';}
+ for(const energy of [20,60,100]){const out=ratios(T1,10,energy);$('ea'+energy+'Arr').textContent=fmt(out.arr,3)+'×';$('ea'+energy+'Coll').textContent=fmt(out.coll,3)+'×';}
+ $('discussionResult').innerHTML=`<strong>這次的結論：</strong>若從 ${t1}°C 升到 ${t1+10}°C，要讓速率常數<strong>恰好變成兩倍</strong>，Arrhenius 需要 Eₐ ≈ <strong>${fmt(arrE,2)} kJ/mol</strong>，Collision Theory 需要 Eₐ ≈ <strong>${fmt(collE,2)} kJ/mol</strong>。這些值隨起始溫度而改變，因此 10°C Rule 不是普遍定律。`;
+ $('chartInsight').innerHTML=dt===10?`目前是 <strong>${t1}°C → ${t1+10}°C</strong>。要在圖二碰到紅色 2 倍線，Arrhenius 的 Eₐ 需約 <strong>${fmt(arrE,2)} kJ/mol</strong>、Collision Theory 約 <strong>${fmt(collE,2)} kJ/mol</strong>。`:`目前 ΔT = +${dt}°C；圖二的交點代表<strong>本次升溫幅度</strong>下恰好兩倍，不是 10°C Rule。`;
+ if(currentPage==='charts')requestAnimationFrame(drawCharts);
+}
+function chart(canvasId,series,xMax,xTitle,markerX){
+ const canvas=$(canvasId),width=Math.max(300,canvas.getBoundingClientRect().width),height=Math.max(260,canvas.getBoundingClientRect().height),scale=Math.min(window.devicePixelRatio||1,2);
+ canvas.width=Math.round(width*scale);canvas.height=Math.round(height*scale);const ctx=canvas.getContext('2d');ctx.setTransform(scale,0,0,scale,0,0);
+ const m={left:52,right:13,top:20,bottom:53},w=width-m.left-m.right,h=height-m.top-m.bottom;
+ ctx.clearRect(0,0,width,height);ctx.fillStyle='#fff';ctx.fillRect(0,0,width,height);
+ const all=series.flatMap(s=>s.values).filter(p=>Number.isFinite(p[1]));let yMax=Math.max(2.3,...all.map(p=>p[1]))*1.07;
+ const tick=yMax<=3?.5:yMax<=7?1:yMax<=15?2:yMax<=35?5:10;yMax=Math.ceil(yMax/tick)*tick;
+ const xp=x=>m.left+x/xMax*w,yp=y=>m.top+h-(y/yMax*h);
+ ctx.font='11px system-ui';ctx.textBaseline='middle';
+ for(let y=0;y<=yMax+1e-8;y+=tick){const yy=yp(y);ctx.beginPath();ctx.strokeStyle='#eef2f7';ctx.lineWidth=1;ctx.moveTo(m.left,yy);ctx.lineTo(width-m.right,yy);ctx.stroke();ctx.fillStyle='#718398';ctx.textAlign='right';ctx.fillText(y.toFixed(yMax<=4?1:0),m.left-8,yy)}
+ for(let i=0;i<=4;i++){const x=xMax*i/4;ctx.textAlign='center';ctx.textBaseline='top';ctx.fillStyle='#718398';ctx.fillText(fmt(x,0),xp(x),m.top+h+9)}
+ // Keep the educational tolerance band visually subtle, without appended numeric labels.
+ ctx.fillStyle='rgba(187,200,219,.11)';ctx.fillRect(m.left,yp(2.1),w,yp(1.9)-yp(2.1));
+ for(const y of [1.9,2.1]){ctx.setLineDash([5,6]);ctx.strokeStyle='#c5d0dd';ctx.lineWidth=1.25;ctx.beginPath();ctx.moveTo(m.left,yp(y));ctx.lineTo(width-m.right,yp(y));ctx.stroke();ctx.setLineDash([])}
+ ctx.setLineDash([7,5]);ctx.strokeStyle='#cf656a';ctx.lineWidth=1.5;ctx.beginPath();ctx.moveTo(m.left,yp(2));ctx.lineTo(width-m.right,yp(2));ctx.stroke();ctx.setLineDash([]);
+ ctx.setLineDash([3,5]);ctx.strokeStyle='#8e9faf';ctx.lineWidth=1.15;ctx.beginPath();ctx.moveTo(xp(markerX),m.top);ctx.lineTo(xp(markerX),m.top+h);ctx.stroke();ctx.setLineDash([]);
+ for(const s of series){ctx.save();ctx.beginPath();ctx.rect(m.left,m.top,w,h);ctx.clip();ctx.strokeStyle=s.color;ctx.lineWidth=2.7;ctx.lineJoin='round';ctx.beginPath();s.values.forEach(([x,y],i)=>{if(i===0)ctx.moveTo(xp(x),yp(y));else ctx.lineTo(xp(x),yp(y))});ctx.stroke();ctx.restore();}
+ ctx.fillStyle='#50657f';ctx.textAlign='center';ctx.textBaseline='alphabetic';ctx.font='12px system-ui';ctx.fillText(xTitle,m.left+w/2,height-9);
+ ctx.save();ctx.translate(15,m.top+h/2);ctx.rotate(-Math.PI/2);ctx.fillText('k₂ / k₁（無單位）',0,0);ctx.restore();
+}
+function drawCharts(){
+ if(currentPage!=='charts')return;
+ const T=state.t1+273.15;
+ const tLines={arr:[],coll:[]},eaLines={arr:[],coll:[]};
+ for(let x=0;x<=20;x+=.2){const r=ratios(T,x,state.ea);tLines.arr.push([x,r.arr]);tLines.coll.push([x,r.coll]);}
+ for(let x=0;x<=120;x+=1){const r=ratios(T,state.dt,x);eaLines.arr.push([x,r.arr]);eaLines.coll.push([x,r.coll]);}
+ chart('tempChart',[{color:'#3174d7',values:tLines.arr},{color:'#0f9276',values:tLines.coll}],20,'升溫幅度 ΔT（°C）',state.dt);
+ chart('eaChart',[{color:'#3174d7',values:eaLines.arr},{color:'#0f9276',values:eaLines.coll}],120,'活化能 Eₐ（kJ/mol）',state.ea);
+}
+let resizeTimeout;
+window.addEventListener('resize',()=>{clearTimeout(resizeTimeout);resizeTimeout=setTimeout(drawCharts,120)});
+render();
+</script>
+</body>
+</html>
